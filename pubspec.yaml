@@ -1,0 +1,33 @@
+name: chat_room_app
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_chat_ui: ^1.1.5
+  open_file: ^3.2.1
+  uuid: ^3.0.4
+  flutter_svg: ^0.22.0
+  shared_preferences: ^2.0.6
+  flutter_spinkit: "^4.1.2"
+  path_provider: ^2.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/
