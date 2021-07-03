@@ -55,13 +55,13 @@ class _HomeState extends State<Home> {
             for (Person p in _peoples) mp2[p.id] = true;
 
             mp.forEach((key, value) {
-              print(key);
-              print('^'*20);
+              // print(key);
+              // print('^'*20);
               if (!mp2.containsKey(key)) _peoples.add(value);
             });
 
-            for(var value in _peoples)
-              print(value.id+" "+value.userName);
+            // for(var value in _peoples)
+            //   print(value.id+" "+value.userName);
 
 
 
@@ -108,8 +108,8 @@ class _HomeState extends State<Home> {
                             userName: widget.userName,
                             client: widget.client,
                             other: Person(
-                              '||_.g.r.o.u.p._||',
-                              '||_.g.r.o.u.p._||',
+                              '___GROUP_MESSAGE___',
+                              '___GROUP_MESSAGE___',
                               true
                             ),
                           );

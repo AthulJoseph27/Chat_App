@@ -17,14 +17,14 @@ class ChatRoom extends StatefulWidget {
 }
 
 class _ChatRoomState extends State<ChatRoom> {
-  types.User _user1;
+  types.User _user;
 
   @override
   void initState() {
     super.initState();
     if(widget.client.messages[widget.other.userName] == null)
         widget.client.messages[widget.other.userName] = [];
-    _user1 = types.User(id: widget.userName,firstName: widget.userName);
+    _user = types.User(id: widget.userName,firstName: widget.userName);
   }
 
   @override
@@ -40,7 +40,7 @@ class _ChatRoomState extends State<ChatRoom> {
               theme: DarkChatTheme(),
               onMessageTap: _handleMessageTap,
               onSendPressed: _handleSendPressed,
-              user: _user1,
+              user: _user,
               showUserNames: true,
             );
           },
@@ -56,7 +56,7 @@ class _ChatRoomState extends State<ChatRoom> {
   }
 
   void _handleSendPressed(types.PartialText message) {
-    widget.client.sendMessage(widget.other.userName,message.text,widget.other.userName == '^&*GROUP_MESSAGE*&^');
+    widget.client.sendMessage(widget.other.userName,message.text,widget.other.userName == '___GROUP_MESSAGE___');
   }
 
 

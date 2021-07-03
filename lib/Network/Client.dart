@@ -119,12 +119,9 @@ class ChatRoomClient {
       _clientSocket = await Socket.connect(_address, _PORT);
 
       _clientSocket.listen((List<int> event) {
-        /// FLAG<>Name<>Name<>Message
+        /// FLAG<>fromUserName<>toName<>Message
         /// MY_ID<>ID
         List<String> data = utf8.decode(event).split(_SEPARATOR);
-
-        print("DEBUGGING>>>");
-        print(data);
 
         if (data.isEmpty) return;
 
@@ -152,17 +149,21 @@ class ChatRoomClient {
         }
 
         if (data[0] == _GROUP_MESSAGE) {
+          if(messages[_GROUP_MESSAGE] == null)
+              messages[_GROUP_MESSAGE] = [];
           messages[_GROUP_MESSAGE].add(
             types.TextMessage(
               author: types.User(
                 id: data[1],
-                firstName: data[2],
+                firstName: data[1],
               ),
               createdAt: DateTime.now().millisecondsSinceEpoch,
               id: const Uuid().v4(),
               text: data[3],
             ),
           );
+          refreshChat.value = !refreshChat.value;
+          return;
         }
 
         if (data[0] != _MESSAGE.toString()) return;
@@ -173,7 +174,7 @@ class ChatRoomClient {
           types.TextMessage(
             author: types.User(
               id: data[1],
-              firstName: data[2],
+              firstName: data[1],
             ),
             createdAt: DateTime.now().millisecondsSinceEpoch,
             id: const Uuid().v4(),
@@ -233,8 +234,6 @@ class ChatRoomClient {
         _SEPARATOR +
         text +
         _SEPARATOR;
-
-    print("Text->"+text);
 
     _clientSocket.writeln(text);
 
